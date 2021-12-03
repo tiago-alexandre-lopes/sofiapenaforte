@@ -791,7 +791,7 @@ header ul li h1{
   left: 0;
   width: 100%;
   height: 100%;
-  transform: scale(1.2) translateY(-23%);
+  transform: scaleY(1.5) scaleX(1) translateY(-6%);
   transition: all .5s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
@@ -835,6 +835,17 @@ header ul li h1{
   padding-right: 4vh;
 }
 
+.call_to_action a .first_line span{
+  display: inline-block;
+  position: absolute;
+  opacity: 0;
+  transition: all .5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.call_to_action a:hover .first_line span{
+  opacity: 1;
+}
+
 .call_to_action a .first_line,
 .call_to_action a .second_line{
   transition: all .5s cubic-bezier(0.65, 0, 0.35, 1);
@@ -851,26 +862,34 @@ header ul li h1{
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translateX(-50%)
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
 }
+
+.call_to_action .emojis svg{
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-65%);
+    width: 100%;
+    height: 100%;
+}
+
 
 .call_to_action .emojis .lines{
-  stroke-dasharray: 302px;
-  stroke-dashoffset: 302px;
+  stroke-dasharray: 1147px;
+  stroke-dashoffset: 1147px;
   transition: all .5s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-.call_to_action .emojis .exclamation{
-  stroke-dasharray: 83px;
-  stroke-dashoffset: 83px;
-  transition: all .5s cubic-bezier(0.65, 0, 0.35, 1);
-}
 
-.call_to_action a:hover .emojis .lines,
-.call_to_action a:hover .emojis .exclamation{
+.call_to_action a:hover .emojis .lines{
   stroke-dashoffset: 0;
   transition: all 1s cubic-bezier(0.65, 0, 0.35, 1);
 }
+
+
 
 
 .call_to_action p:hover + figure svg{
@@ -1372,13 +1391,13 @@ figure{
 figure img{
   width: 100%;
   display: block;
-  transform: translateY(-25%) scale(1.2);
+  transform: scale(1.2);
   opacity: 0;
   transition: all 1.5s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 figure.in_viewport img{
-  transform: translateY(0) scale(1);
+  transform: scale(1);
   opacity: 1;
 }
 
