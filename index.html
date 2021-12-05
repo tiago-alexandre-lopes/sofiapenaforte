@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<style>
+
+
+
+@font-face {
+  font-family: 'mantraalt';
+  src: url('fonts/mantra-alt-webfont.woff2') format('woff2'),
+       url('fonts/mantra-alt-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+@font-face {
+  font-family: 'strawford_regularregular';
+  src: url('fonts/strawford_regular-webfont.woff2') format('woff2'),
+       url('fonts/strawford_regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+
+
+@font-face {
+  font-family: 'strawfordmedium';
+  src: url('fonts/strawford_medium-webfont.woff2') format('woff2'),
+       url('fonts/strawford_medium-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+
+
+@font-face {
+  font-family: 'strawford_boldbold';
+  src: url('fonts/strawford_bold-webfont.woff2') format('woff2'),
+       url('fonts/strawford_bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+body {
+	background-attachment: fixed;
+	color: #111;
+	font-family: 'strawfordmedium';
+}
+
+h1{
+	font-family: 'mantraalt';
+	font-size: 16px;
+	text-transform: uppercase;
+}
+
+p{
+	font-size: 13px;
+	font-family: 'strawford_regularregular';
+	color: #444;
+}
+
+.box {
+	border-radius: 6px;
+	background: white;
+	padding: 32px;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	margin: auto;
+}
+
+.box input{
+	border: 2px solid #111;
+    border-radius: 3px;
+    padding: 0 0 0 18px;
+    font-size: 18px;
+    line-height: 36px;
+    letter-spacing: 18px;
+    text-align: center;
+    width: 134px;
+    overflow: hidden;
+	margin: 32px auto 18px;
+	display: block;
+}
+
+.box input:focus{
+	border: 2px solid blue;
+}
+
+.lightbox {
+	zoom: 1.5;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(10, 10, 10, 0.8);
+	text-align: center;
+	margin: auto;
+
+}
+
+div.horizontal {
+	display: flex;
+	justify-content: center;
+	height: 100%;
+}
+
+div.vertical {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+}
+
+.sr-only{
+	display: none;
+}
+
+button{
+	border: 0;
+    width: 40px;
+    height: 40px;
+
+    background: #111;
+    border-radius: 100%;
+	color: #fff;
+	cursor: pointer;
+}
+
+
+.form_wrapper{
+	
+}
+
+</style>
+
+<body>
+
+	<div id="loginbox" class="lightbox" >
+		<div class="horizontal">
+			<div class="vertical">
+				<div class="box">
+					<h1>Sofia Penaforte</h1>
+					<p>Digite a password para visualizar o portfólio</p>
+					<div class="form_wrapper">
+						<input style="" id="password" type="password" placeholder="" maxlength="4" /> 
+						<button id="loginbutton" type="button"> <span class="sr-only">Entrar</span>➜</button>
+					</div>
+					<p id="wrongPassword" style="display: none">wrong password</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+
+	 <script type="text/javascript" src="https://rawcdn.githack.com/chrisveness/crypto/7067ee62f18c76dd4a9d372a00e647205460b62b/sha1.js"></script>
+
+	<script type="text/javascript">
+	"use strict";
+
+
+	function loadPage(pwd) {
+
+		var hash= pwd;
+		hash= Sha1.hash(pwd);
+		var url= hash + "/index.html";
+
+		$.ajax({
+			url : url,
+			dataType : "html",
+			success : function(data) {
+
+				window.location= url;
+
+			},
+			error : function(xhr, ajaxOptions, thrownError) {
+
+
+				parent.location.hash= hash;
+
+				//$("#wrongPassword").show();
+				$("#password").attr("placeholder","wrong password");
+				$("#password").val("");
+			}
+		});
+	}
+
+
+	$("#loginbutton").on("click", function() {
+		loadPage($("#password").val());
+	});
+	$("#password").keypress(function(e) {
+		if (e.which == 13) {
+
+			loadPage($("#password").val());
+		}
+	});
+	$("#password").focus();
+
+	</script>
+
+</body>
+</html>
