@@ -347,6 +347,36 @@ p{
   color: #000;
 }
 
+.small{
+  font-size: 12px;
+    color: #ccc;
+    text-decoration: none;
+    display: inline-block;
+    margin: 3em 0;
+    position: relative;
+}
+
+.small::before{
+  transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  content: "";
+  width: 0;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ccc;
+}
+
+.small:hover{
+  color: #fff;
+}
+
+.small:hover::before{
+  background: #fff;
+  width: 100%;
+}
+
 @media (max-width: 767px){
   .button{
     font-size: 1.3rem;
@@ -876,6 +906,17 @@ header ul li h1{
     height: 100%;
 }
 
+@media (max-width: 991px){
+  .call_to_action a{
+    text-decoration: underline;
+    text-decoration-color: #d483bf;
+  }
+  .call_to_action > figure svg,
+  .call_to_action .emojis svg{
+    display: none;
+  }
+}
+
 
 .call_to_action .emojis .lines{
   stroke-dasharray: 1147px;
@@ -1151,6 +1192,7 @@ header{
   /*display: inline-block;*/
   transform: translateY(var(--y));
   transition: transform var(--duration) ease, box-shadow var(--duration) ease;
+  line-height: 1;
 }
 
 .animate_text div {
@@ -1370,6 +1412,10 @@ header.invert ul li a.animate_text div{
 
 .centered{
   text-align: center;
+}
+
+.no-margin{
+  margin: 0 !important;
 }
 
 .intro p{
